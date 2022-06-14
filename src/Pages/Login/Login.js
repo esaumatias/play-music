@@ -21,50 +21,71 @@ function Login() {
   });
 
   return (
-    <Container>
-      <Formik
-      validationSchema={schema}
-      onSubmit={console.log}
-      initialValues={{
-        nome: '',
+    <section
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
-      {({
-        handleSubmit,
-        handleChange,
-        values,
-        isValid,
-        errors,
-      }) => (
-        <Form noValidate onSubmit={handleSubmit}>
-          <Row className="mb-3">
-            <Form.Group
-              as={Col}
-              md="6"
-              controlId="validationFormik103"
-              className="position-relative"
-            >
-              <Form.Label>Nome</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Digite seu nome"
-                name="nome"
-                value={values.nome}
-                onChange={handleChange}
-                isInvalid={!!errors.nome}
-              />
+      <Container>
+          <Formik
+            style={{ textAlign: 'center' }}
+            validationSchema={schema}
+            onSubmit={console.log}
+            initialValues={{
+              nome: "",
+            }}
+          >
+            {({ handleSubmit, handleChange, values, isValid, errors }) => (
+              <Form noValidate onSubmit={handleSubmit}>
+                <Row style={{ textAlign: "center" }}>
+                  <h1>Play Music</h1>
+                </Row>
 
-              <Form.Control.Feedback type="invalid" tooltip>
-                {errors.nome}
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Row>
-          <Button type="submit" disabled={!isValid}>Submit form</Button>
-        </Form>
-      )}
-    </Formik>
-    </Container>
-  )
+                <Row className="mb-4 justify-content-md-center">
+                  <Form.Group
+                    as={Col}
+                    md="6"
+                    controlId="validationFormik103"
+                    className="position-relative"
+                  >
+                    <Form.Label>Nome</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Digite seu nome"
+                      name="nome"
+                      value={values.nome}
+                      onChange={handleChange}
+                      isInvalid={!!errors.nome}
+                      size="lg"
+                    />
+
+                    <Form.Control.Feedback type="invalid" tooltip>
+                      {errors.nome}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Row>
+                
+                <Row className="mb-3 justify-content-md-center" style={{ textAlign: 'center' }}>
+                  <Form.Group
+                    as={Col}
+                    md="6"
+                    controlId="validationFormik103"
+                    className="position-relative"
+                  >
+                    <Button type="submit" disabled={!isValid} variant="dark">
+                      Entrar
+                    </Button>
+                  </Form.Group>
+                </Row>
+              </Form>
+            )}
+          </Formik>
+      </Container>
+    </section>
+  );
 }
 
 export default Login;
