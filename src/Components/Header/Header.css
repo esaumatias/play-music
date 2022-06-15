@@ -1,0 +1,15 @@
+.containerNav {
+  display: flex;
+  /* width: 100vw; */
+  justify-content: space-around;
+  text-align: center;
+}
+
+.navLink {
+  width: 33%;
+  padding: 10px;
+  background-color: rgb(7, 7, 7);
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+}

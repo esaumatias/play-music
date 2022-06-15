@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
-  const [allNotes, setAllNotes] = useState({});
+  const [user, setUser] = useState({});
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <AppContext.Provider
       value={{
-        allNotes,
-        setAllNotes,
+        user,
+        setUser,
+        isLogged,
+        setIsLogged,
       }}
     >
       { children }

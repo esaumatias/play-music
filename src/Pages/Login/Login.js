@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import * as yup from 'yup';
 import { setLocale } from 'yup';
 import * as formik from 'formik';
+import { Link } from "react-router-dom";
+import AppContex from '../../Context/AppContext';
+import {  createUser } from '../../Services/userAPI';
 import { Container, Button, Form, Row, Col } from 'react-bootstrap';
 
 function Login() {
-  const { Formik } = formik
+  const { Formik } = formik;
+  const { setUser, user, setIsLogged } = useContext(AppContex);
 
   setLocale({
     mixed: {
       default: 'Não é válido',
     },
     string: {
-      min: 'Deve conter pelo menos 7 caracteres',
+      min: 'Deve conter pelo menos 3 caracteres',
+      required: 'NOME '
     },
+
   });
 
   const schema = yup.object().shape({
-    nome: yup.string().min(7).required(),
+    nome: yup.string().min(3).required(),
   });
+
+  useEffect(() => {
+    createUser({name: user}).then((data) => {
+      if (data === 'OK') {
+        setIsLogged(true);
+      }
+    });
+  }, [user, setIsLogged])
 
   return (
     <section
@@ -38,8 +52,8 @@ function Login() {
               nome: "",
             }}
           >
-            {({ handleSubmit, handleChange, values, isValid, errors }) => (
-              <Form noValidate onSubmit={handleSubmit}>
+            {({ handleSubmit, handleChange, values, isValid = true, errors }) => (
+              <Form noValidate onClick={() => handleSubmit(setUser(values.nome))}>
                 <Row style={{ textAlign: "center" }}>
                   <h1>Play Music</h1>
                 </Row>
@@ -75,8 +89,10 @@ function Login() {
                     controlId="validationFormik103"
                     className="position-relative"
                   >
-                    <Button type="submit" disabled={!isValid} variant="dark">
-                      Entrar
+                    <Button type="button" disabled={!isValid} variant="dark">
+                      <Link to="/search" style={{ textTransform: 'none', textDecoration: 'none', color: 'white' }}>
+                        Entrar
+                      </Link>
                     </Button>
                   </Form.Group>
                 </Row>
