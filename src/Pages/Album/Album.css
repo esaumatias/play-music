@@ -1,0 +1,9 @@
+.imageAlbum img {
+  width: 18rem;
+  margin-right: 30px;
+}
+
+.conatinerMusics {
+  height: 31vh;
+  overflow: scroll;
+}
