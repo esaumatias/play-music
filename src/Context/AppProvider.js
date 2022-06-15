@@ -4,6 +4,7 @@ import AppContext from './AppContext';
 function AppProvider({ children }) {
   const [user, setUser] = useState({});
   const [isLogged, setIsLogged] = useState(false);
+  const [albuns , setAlbuns] = useState({});
 
   return (
     <AppContext.Provider
@@ -12,6 +13,8 @@ function AppProvider({ children }) {
         setUser,
         isLogged,
         setIsLogged,
+        albuns,
+        setAlbuns,
       }}
     >
       { children }

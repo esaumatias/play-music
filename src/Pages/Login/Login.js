@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import * as yup from 'yup';
 import { setLocale } from 'yup';
 import * as formik from 'formik';
@@ -26,13 +26,13 @@ function Login() {
     nome: yup.string().min(3).required(),
   });
 
-  useEffect(() => {
-    createUser({name: user}).then((data) => {
-      if (data === 'OK') {
-        setIsLogged(true);
-      }
-    });
-  }, [user, setIsLogged])
+ function createUse(value) {
+  createUser({name: value}).then((data) => {
+    if (data === 'OK') {
+      setIsLogged(true);
+    }
+  });
+ }
 
   return (
     <section
@@ -89,7 +89,7 @@ function Login() {
                     controlId="validationFormik103"
                     className="position-relative"
                   >
-                    <Button type="button" disabled={!isValid} variant="dark">
+                    <Button type="button" disabled={!isValid} variant="dark" onClick={() => createUse(user)}>
                       <Link to="/search" style={{ textTransform: 'none', textDecoration: 'none', color: 'white' }}>
                         Entrar
                       </Link>

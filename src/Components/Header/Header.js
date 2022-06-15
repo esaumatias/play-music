@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import { Nav, Navbar, Container } from 'react-bootstrap';
 import AppContext from '../../Context/AppContext';
 import { Link } from 'react-router-dom';
 import './Header.css';
